@@ -1,6 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
-
 n = int(input("Введите размерность матрицы A: "))           #пример при котором работает программа 2 1 0, 1 2 1, 0 1 2
 A = np.zeros((n, n))
 print("Введите элементы матрицы A построчно:")
