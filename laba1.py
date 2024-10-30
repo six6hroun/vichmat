@@ -10,7 +10,7 @@ def f_rational(x):
 def f_linear(x):
     return x
 
-# Определение интерполяционного полинома Лагранжа
+# Интерполяционный полином Лагранжа
 def lagrange(x, y, x_interp):
     n = len(x)
     y_interp = np.zeros_like(x_interp)
@@ -22,11 +22,11 @@ def lagrange(x, y, x_interp):
         y_interp += y[i] * l_i
     return y_interp
 
-# Создание равноотстоящих узлов
+# Равноотстоящие узлы
 def ravnostoyashchikh(n):
     return np.linspace(-1, 1, n)
 
-# Создание узлов Чебышева
+# Узлы Чебешева
 def chebyshev(n):
     return np.cos(np.pi * (2 * np.arange(n) + 1) / (2 * n))
 
@@ -55,7 +55,7 @@ def interpolation(f, n, node_type, title):
     plt.grid(True)
     plt.show()
 
-# Исследование отклонения
+# Исследование отклонений
 def otlonenia(f, n, node_type, title):
     x = np.linspace(-1, 1, 100)
     y = f(x)
@@ -80,8 +80,6 @@ def otlonenia(f, n, node_type, title):
     plt.show()
 
 n = int(input("Введите количество узлов (n): "))
-
-# Вывод графиков для различных функций и узлов
 print("График исходной функции и интерполяционного полинома для sin(x):")
 interpolation(f, n, 'equidistant', 'Интерполяция Лагранжа (равноотстоящие узлы при n = {})'.format(n))
 interpolation(f, n, 'chebyshev', 'Интерполяция Лагранжа (узлы Чебышева при n = {})'.format(n))
