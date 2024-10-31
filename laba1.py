@@ -132,7 +132,7 @@ interval = [-1, 1]
 n_values = [4, 8, 16]
 
 # Построение графиков
-fig, axes = plt.subplots(1, len(n_values), figsize=(15, 5))
+plt.figure(figsize=(10,6))
 
 # График исходной функции
 x_plot = np.linspace(interval[0], interval[1], 100)
@@ -146,15 +146,13 @@ for i, n in enumerate(n_values):
   y_spline = cubic_spline(x_plot, x_data, y_data)
 
   # Построение графика сплайна
-  axes[i].plot(x_plot, y_plot, label="f(x)")
-  axes[i].plot(x_plot, y_spline, label="Кубический сплайн (n = {})".format(n))
-
-  # Оформление графика
-  axes[i].set_xlabel("x")
-  axes[i].set_ylabel("y")
-  axes[i].set_title("n = {}".format(n))
-  axes[i].legend()
-  axes[i].grid(True)
+  plt.plot(x_plot, y_plot, label="f(x)")
+  plt.plot(x_plot, y_spline, label="Кубический сплайн (n = {})".format(n))
+  plt.xlabel("x")
+  plt.ylabel("y")
+  plt.title("n = {}".format(n))
+  plt.legend()
+  plt.grid(True)
 
 plt.tight_layout()
 plt.show()
