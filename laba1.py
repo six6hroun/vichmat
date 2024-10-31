@@ -121,7 +121,7 @@ def cubic_spline(x, x_data, y_data):
 
   # Вычисление значений сплайна
   y_spline = np.zeros_like(x)
-  for i in range(n):
+  for i in range(n-1):
     idx = np.where((x >= x_data[i]) & (x < x_data[i + 1]))
     y_spline[idx] = a[i] + b[i] * (x[idx] - x_data[i]) + c[i] * (x[idx] - x_data[i]) ** 2 + d[i] * (x[idx] - x_data[i]) ** 3
 
@@ -129,7 +129,7 @@ def cubic_spline(x, x_data, y_data):
 
 # Задание отрезка и количества узлов
 interval = [-1, 1]
-n_values = [4, 8, 16]
+n_values = [4]
 
 # Построение графиков
 plt.figure(figsize=(10,6))
