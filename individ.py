@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 '''def gauss_jordan_inverse(A):
   # Проверка определителя
@@ -28,38 +29,37 @@ A = np.array([[1, 2], [3, 5]])
 inverse_matrix = gauss_jordan_inverse(A)
 print(inverse_matrix)'''
 
-'''def divided_differences(x, y):
-  n = len(y)
-  coef = np.zeros((n, n))
-  coef[:, 0] = y  # Первый столбец - значения функции
-
-  for j in range(1, n):
-    for i in range(n - j):
-      coef[i][j] = (coef[i + 1][j - 1] - coef[i][j - 1]) / (x[i + j] - x[i])
-
-  return coef[0]  # Возвращаем только первую строку с коэффициентами
+'''def newtons_polynomial(dd_table, xs, x):
+    result = dd_table[0][0]
+    term = 1
+    for i in range(1, len(xs)):
+        term *= (x - xs[i - 1])
+        result += dd_table[i][0] * term
+    return result
 
 
-def newton_interpolation(x, y, x_interp):
-  n = len(x)
-  coef = divided_differences(x, y)
+def interpolate_newton(xs, ys, x_values):
+    dd_table = divided_differences(xs, ys)
+    interpolated_ys = [newtons_polynomial(dd_table, xs, x) for x in x_values]
 
-  # Вычисляем значение полинома в точке x_interp
-  result = coef[0]
-  product_term = 1.0
-
-  for i in range(1, n):
-    product_term *= (x_interp - x[i - 1])
-    result += coef[i] * product_term
-
-  return result
+    return interpolated_ys
 
 
-# Данные
-x_points = np.array([1, 2, 3, 4])
-y_points = np.array([1, 2, 5, 7])
+xs = [1, 2, 3, 4]
+ys = [1, 2, 5, 7]
+x_values = np.linspace(min(xs), max(xs), 30)
+interpolated_ys = interpolate_newton(xs, ys, x_values)
 
-# Точка для интерполяции
-x_interp = 1.5
-result = newton_interpolation(x_points, y_points, x_interp)
-print(f"Значение интерполяционного полинома в точке {x_interp} равно {result}")'''
+for x, y in zip(x_values, interpolated_ys):
+    print(f'При x = {x:.2f}, интерполированное значение y = {y:.2f}')
+
+# Построение графика
+plt.figure(figsize=(8, 6))
+plt.scatter(xs, ys, color="red", label="Исходные точки")
+plt.plot(x_values, interpolated_ys, color="blue", label="Интерполяционный полином")
+plt.title("Интерполяционный полином Ньютона")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.legend()
+plt.grid(True)
+plt.show()'''
