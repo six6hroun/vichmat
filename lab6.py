@@ -9,8 +9,8 @@ def exact_solution(x):
     return np.exp(-x**2)
 
 # Ввод данных
-x0 = float(input("Введите начальное значение x (x0): "))
-x_end = float(input("Введите конечное значение x (x_end): "))
+x0 = 0
+x_end = 1
 y0 = float(input("Введите начальное значение y (y0): "))
 n = int(input("Введите количество шагов (n): "))
 
