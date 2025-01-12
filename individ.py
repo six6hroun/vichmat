@@ -29,7 +29,20 @@ A = np.array([[1, 2], [3, 5]])
 inverse_matrix = gauss_jordan_inverse(A)
 print(inverse_matrix)'''
 
-'''def newtons_polynomial(dd_table, xs, x):
+'''def divided_differences(xs, ys):
+    dd_table = []
+    dd_table.append(list(ys))
+
+    for i in range(1, len(xs)):
+        row = []
+        for j in range(len(xs) - i):
+            row.append((dd_table[-1][j + 1] - dd_table[-1][j]) / (xs[j + i] - xs[j]))
+        dd_table.append(row)
+
+    return dd_table
+
+
+def newtons_polynomial(dd_table, xs, x):
     result = dd_table[0][0]
     term = 1
     for i in range(1, len(xs)):
@@ -45,8 +58,8 @@ def interpolate_newton(xs, ys, x_values):
     return interpolated_ys
 
 
-xs = [1, 2, 3, 4]
-ys = [1, 2, 5, 7]
+xs = [0, 1, 2, 3]
+ys = [1, 4, 9, 16]
 x_values = np.linspace(min(xs), max(xs), 30)
 interpolated_ys = interpolate_newton(xs, ys, x_values)
 
